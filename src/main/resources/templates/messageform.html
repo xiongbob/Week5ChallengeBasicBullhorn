@@ -26,6 +26,7 @@
     Posted By :<input type="text" th:field="*{postedBy}" />
     <span th:if="${#fields.hasErrors('postedBy')}"
           th:errors="*{postedBy}"></span><br />
+    <input type="file" name="file" /><br/><br/>
     <input type="submit" value="Submit" />
 
 </form>
