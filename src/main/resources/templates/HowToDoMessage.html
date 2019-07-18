@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="header">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>HowToDoMessage</title>
+        <!--Bootstrap CSS-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <!--My CSS-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--Google Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Belgrano|Flamenco&display=swap" rel="stylesheet">
+    </div>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        body {
+            background: azure;
+
+            /*<!--
+            background: url(https://res.cloudinary.com/dvbavvpr8/image/upload/c_crop,g_faces,h_1926,q_97,w_2889/v1558553606/samples/people/bicycle.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            -->*/
+        }
+
+        th {
+            text-align: left;
+        }
+        .container{
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div th:fragment="navbar">
+        <ul class="nav">
+            <li class="nav-item" id="firstItem">
+                <a class="nav-link active" href="https://www.w3schools.com/html/">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.w3schools.com/css/">CSS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.w3schools.com/java/">Java</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.w3schools.com/bootstrap/">BootStrap</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.w3schools.com/">Others</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Navigation bar-->
+    <div th:insert="base :: navbar"></div>
+
+    <div class="jumbotron">
+        <h1 class="display-4">How to Create a Message Application</h1>
+        <!--<h2>Skills needed as the following:</h2>-->
+        <p class="lead">Skills needed as the following: </p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+
+    <h6><a href="https://www.w3schools.com/html/">HTML</a></h6>
+    <h6><a href="https://www.w3schools.com/css/">CSS</a></h6>
+    <h6><a href="https://www.w3schools.com/java/">Java</a></h6>
+    <h6><a href="https://www.w3schools.com/bootstrap/">BootStrap</a></h6>
+    <h6><a href="https://www.w3schools.com/">Other related skills</a></h6>
+    <br/>
+
+    <br/>
+    <p>Here are the steps</p>
+    <ul>
+        <li>Create your project</li>
+        <li>Write your HomeController.java</li>
+        <li>Create the html web page</li>
+        <li>Run your application</li>
+        <li>Test it in the browse</li>
+    </ul>
+
+    <!--<h2><p><a href="">Please provide <b>your feedback</b> to us.</a></p></h2>-->
+    <h2><p><a href="">Here is a <b>example</b> for you.</a></p></h2>
+<!--
+    <br/>
+    <form action="#">
+        Name: <input type="text"><br>
+        Feedback: <textarea cols="54" rows="5"></textarea><br>
+
+        <input type="submit"></input>
+        <button type="button">Cancel</button>
+    </form>
+    <br/>
+    <br/>
+-->
+    <form action="#"
+          th:action="@{/process}"
+          th:object="${message}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}" />
+        Title :<input type="text" th:field="*{title}" />
+        <span th:if="${#fields.hasErrors('title')}"
+              th:errors="*{title}"></span><br />
+
+        Content :<textarea rows="3" th:field="*{content}" />
+        <span th:if="${#fields.hasErrors('content')}"
+              th:errors="*{content}"></span><br />
+
+        Posted Date :<input type="text" th:field="*{postedDate}" />
+        <span th:if="${#fields.hasErrors('postedDate')}"
+              th:errors="*{postedDate}"></span><br />
+
+        Posted By :<input type="text" th:field="*{postedBy}" />
+        <span th:if="${#fields.hasErrors('postedBy')}"
+              th:errors="*{postedBy}"></span><br />
+        <input type="submit" value="Submit" />
+    </form>
+
+        <p><b>Our team: </b></p>
+    <!--<table class="table table-striped table-dark table-bordered">-->
+    <!--<table class="table table-hover">-->
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>email</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHwAmgMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwQCBQYBB//EADwQAAEDAgIGCAQEBAcAAAAAAAEAAgMEEQUhEjFBUWFxBhQiMlKRodETFlOSI4GxwQcVM/AkQkRicqLh/8QAGwEBAAEFAQAAAAAAAAAAAAAAAAQBAgMFBgf/xAAzEQABAwIDBgUDBAIDAAAAAAAAAQIDBBEFFVESEyExUtEWNEFxoSIykgZhscEUgTVC8P/aAAwDAQACEQMRAD8A3+1SThQgCAIAgCAIAgCAIAgCAIAgCAILhAEAQBANqAIAgCAIAgCAIAgCAIAgCAIDCaaOBmnK4NHHarXORqXUl0dDUVsm6gbdSj/OKe/dktvsFH/y2HTJ+iMQ2Lq5t9L/ANl2CeOoZpxOuNu8c1nY9r0uhzdfh9TQSbuobZfhfZSRXkIIAgG1AEAQBAEAQGTGF5yyG8qBVYjDTO2XcVNth+CVNczeM4N1UnFFIR3m+qi51DopP8L1PUh71J/ib6pnUOilfDFT1IedSf42eqZ1Doo8MVPUg6k/xs9UzqHRR4YqepB1J/jZ6pnUOijwxU9SDqT/ABs9UzqHRR4YqepB1J/jb6pnUOijwxU9SHK4nIZa2QOIIjJY22yyukm3v1eh6LgGFtw6jRifcvFV1N1FHT/IFRKYo/j9da3T0e1syvyur+G6KvV+bNS/DZ/o0VHMaepY9u06LuIVsL1a9C/HMPZXUL43JxRFVPdDpFtjxAIAgG1AEAQBAEAQFiPuDkuMxHzT/wD2h6jgaWw+L2/snik0cjqUJFNm5l+RYGeYVxjCoUCFQgCFAqg4nF4DT4jO06i7Sad4Oa3lPJvI0N/Sv24UUtMZVfK8xFRTCk621xhP9Uvta44cFM47sjOWP/PT6V2tnn6GvpIzNURsGXaF+SsZbaRFLsVqf8aill0RTpVuTwgIAgG1AEAQBAEAQFiPuN5Li8R82/37HqWB/wDHxe39mahG1M45CziNyqha5tywCCLg3CuMPI9VCoQBChi97Y26TzYIVTiarEqUV4DnDRLcgFeyV0brtJlPKsRpjg7w/U/nYKXmL7fabBKtLGxosPFO0vcLOt+fNVpJny1bFdqaD9QT7dBKn7FhdgeRBAEA2oAgJ6Wjnq3aMEZdvdqA/NWOejU4kmno5qhbRt/36G6pcAiaAamRz3bmGw91gdUL6G/p8CjTjMt1/Yutwmgb/p2n/kSVjWV+psG4XSN/6CTD6NsbiylhBA16AyVjpH25mVmH0t/sQowYNNVySOj0Y4weyCNa076GSolc+9jcNqYqaNsbU5GvqoH0s7oZR22rWzwuherHE6KRJG7SESwmUMe6M3bmNoVblrmopajkbI27TdXGFUVFspkqAwllbE27tZyAGsoERV5FUlz3ab9ewDYqXMyIicj1UKhAYydx3JTcO80z3NZjPkJfYrLtDytOQQBANqAvYNSNrKzRlF42N0nDfuCxSv2W8DY4XStqaizuScTq2MaxoYxoa0agBYBQlVV4qdoxjWN2WpZCrW1zIGlrHAyejeaxvksSI4XPX9jTvxWcmwe63CwUdZXE1KZmhdw1s1X+LM+T4Q1Au7//AIsse07ipgnVrPpbzNq6ZtOwyudoNYMzwWZXIxLkNGba7KHK1dY/EKySqOTHdlnIbVzdXUb+VXehvIYUgjRnqRqKZQgDQ/TvF3to2HmqoWutbiTmSTR7MLtLiQB5qpi2U1KwB0i55JedfDkqGZLehkqFQgCAxk7juSm4d5pnuavGvIS+xWXaHlacggCAbUBv+jDPwqiTe4N8hf8AdRaheSHTYAz6Xv8A9G8UY6JTQYjhlUZ3dVZpxnMDSAAUaSJyrdpPhqI0b9fM8ouj50/iV0gO3QZt5lVZB6uEtbdLRob4BsbLABrWjUNgUjkQOKqczjFY6vqDAwkU0Z7X+8+y0dfUq927byQ29LCkTdpfuX4KwyWtJB6hUkjiJzdkFVEMbn6E4AaLNFgrjHzPdioUMXsa/Xr3oVRbEDo3N1ZjeFRUMqPRTBULwgMZO47kpuHeaZ7mrxryEvsVl2h5WnIIAgCC51PR+PQw1rvG4u/b9lCmW7jscFZs0iLqtzZLCbcIAqg1eN1RhjETHWc7JYpdpUs1DLC6Nr021RL6mhbay5ypRUlcim2ikbI1HMW6GbWl57IWGxeq2LDIg3M5lVMSuVTNC0IAgCAICN8Qd3cili9H2IHNLTnkqWMqLcwk7juSmYd5pnuavGvIS+xWXaHlicggCAkw6JmI176KKaP4sbdORod2mt3gbVa92ylydSUEtQ5PRNTtImMjjayMWa0WCgKt1udtFG2NiMbyQzVpkCAxe4MaXFFWwTitjksVqOsVRtm1mV952qZTsVrbr6nHY1VJPUbLftbwIYZGN/qkgDcCVpq/DJZJlkj43N1hP6gp6embDNdNn1tf+CwKuAZBzvsd7KFlNV0/KdzZeI8O61/F3Y967D4nfY72TKarp+U7jxHh3Wv4u7DrsPid9jvZMpqun5TuPEeHda/i7sOuw+J32O9kymq6flO48R4d1r+Luw67D4nfY72TKarp+U7jxHh3Wv4u7DrsPid9jvZMpqun5TuPEeHda/i7sOuw+J32O9kymq6flO48R4d1r+Luw67D4nfY72TKarp+U7jxHh3Wv4u7Hhq4HDNx+x3smU1XT8p3CfqPDutfxd2K8sjDlGSQd4sptBhcscqSScLGtxf9QQT0ywwcVdzW1v5IV0BxwQBAfP6GtqcProq2jldHURv0mvG/jvBvmrlS/A7JOHI+z9Hsap8fwwV1IA17To1NOMzE7eOB/vaoEsat5E+GXa4LzNmHAi4N+Swmcgnqo4QbkZccgl/RA5WsbtPWyGixLFjO0xwk22u1eXus8UC3u853EcZarVipvXmvY1KmHMhAEAQBAEAQBAEAQBAEAQBAEB83KvOzNn0bxyq6P4mytpbuHdlivYSs3HjuOxWuajksEWy3PsXWaetwtuLYVI6SlkbpFjBmN4ts4ha98K7VkJi1aRxK56XscxU1MlTJpPdlsaNQUuOJsaWQ42sr5at93rw00IVkIQQBAEAQBAEAQBAEAQBAEAQBAEB83KvOzLlFhlVW089RAxpjgF33dnvyHIFRZ6yKB7WP5u5GSOF0iKrfQt9COmtVg2NDD6SJ9XS1JtKxhvoOt328tp3cgs0iIphkk3Uav/k7N7tJ7nWaLm9miwHJVOQc7bdtamKFoQBAEAQBAEAQBAEAQBAEAQBAEB83PFXnZlGOauxWpdh2Cuk/EFpnteWtLeJH+X9Vje1rrKqci2SZsDFc5bId90d6PUuBU2jFaSpeLSzubYu4DcOCHM1dY+odomhuFUiBAEAQBAEAQBAEAQBAEAQBAEAQBAX6r+EmDVMfw3V+ItadYa9gv/1WLeOO42UNng38PMIwalFPRPnAJu97i0ueeJsqbakKfD2Tuu9yl/5To/rz+Y9k3imDJ4NVHynR/Xn8x7JvFGTwaqQ1PRzDaVmnPVTtGe46gSdm4FN4oyeDVSKTBsHjj03V01s9QuRbXkBfJN4oyeDVT3+SYP2v8dLdt7jK4tr2cQOabxRk8GqgYHhBJHXZrgkWIsbg2ta29N4oyeDVTJmAYU+MSNrJS0u0Acu9tGrgfJN4oyeDVTxuB4Q5zWtrpC52oZb7bt6bxRk8GqmT+j2FsZM41crvgm0oYQ4syvmALjIg8k3ijJ4NVInYLhLS69TVdlxaextF+HA+SbxRk8GqmIwnBy3SFXUkaBfky+QNidW9N4oyeDVQ/CcIjaXPqqkNBcCSzIWaXHZuBKbxRk8Gqk8HR7Dp5CyOoqSQxr9QtY6s7cCm8UZPBqpP8p0f15/MeybxRk8Gqj5To/rz+Y9k3ijJ4NVHynR/Xn8x7JvFGTwaqPlOj+vP5j2TeKMng1UfKdH9efzHsm8UZPBqp0KsNsEAQBARVFPFUtDZ2B7Qb2OpAROw6kc4udAzSN7nfc3PmgPRQUwa5oisHAg5nbYnzsEB5/L6S5IhaCdouLZ3y3ZoDLqVMBZsTQNLSsMs9/qed0AZRUzQNGFgtqy43/VAZy08UscjJGAtk74GWlzsgI+o03xBII7PBJuHEZnX/fEoDw4dSG34Xd1Wccs75fnnxQGQoqYBwELLOvfLXfX+gQEkMEUItEwN1akBIgCAIAgCA//Z">
+    <img src="data:image/jpeg;base64,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">
+
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
